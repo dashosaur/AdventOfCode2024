@@ -1,6 +1,6 @@
-# Advent of Code 2022
+# Advent of Code 2024
 
-These are my [Advent of Code 2022](https://adventofcode.com/2022) puzzle solutions and puzzle running tool. The solutions and tool are written in Swift and can be run as a command line tool on macOS or with the included Xcode project. The tool can optionally download and cache puzzle input from adventofcode.com or print private leaderboard statistics if a session cookie is provided.
+These are my [Advent of Code 2024](https://adventofcode.com/2024) puzzle solutions and puzzle running tool. The solutions and tool are written in Swift and can be run as a command line tool on macOS or with the included Xcode project. The tool can optionally download and cache puzzle input from adventofcode.com or print private leaderboard statistics if a session cookie is provided.
 
 ## Running Puzzles
 
@@ -80,15 +80,12 @@ Unit tests for running puzzles with custom test input are available in `PuzzleTe
 ### Example
 
 ```swift
-class AOCTests: XCTestCase {
-
-    func testAOC1() {
-        let puzzle = AOC1()
-        let input = "1721,979,366,299,675,1456"
-        
-        XCTAssertEqual(puzzle.solve1(input: input), 514579)
-        XCTAssertEqual(puzzle.solve2(input: input), 241861950)
+struct PuzzleTests {
+    
+    @Test
+    func puzzleExample() {
+        #expect(Example().solve1(input: "12,16") == 5)
+        #expect(Example().solve2(input: "100756") == 50346)
     }
-
 }
 ```
