@@ -18,14 +18,19 @@ class PuzzleTests: XCTestCase {
         let puzzle = AOC1()
         
         let input1 = """
+        3   4
+        4   3
+        2   5
+        1   3
+        3   9
+        3   3
         """
         
-        XCTAssertEqual(puzzle.solve1(input: input1), 0)
+        XCTAssertEqual(puzzle.solve1(input: input1), 11)
         
-        let input2 = """
-        """
+        let input2 = input1
         
-        XCTAssertEqual(puzzle.solve2(input: input2), 0)
+        XCTAssertEqual(puzzle.solve2(input: input2), 31)
     }
     
     func testAOC2() {
