@@ -40,14 +40,19 @@ struct PuzzleTests {
         let puzzle = AOC2()
         
         let input1 = """
+        7 6 4 2 1
+        1 2 7 8 9
+        9 7 6 2 1
+        1 3 2 4 5
+        8 6 4 4 1
+        1 3 6 7 9
         """
         
-        #expect(puzzle.solve1(input: input1) == 0)
+        #expect(puzzle.solve1(input: input1) == 2)
         
-        let input2 = """
-        """
+        let input2 = input1
         
-        #expect(puzzle.solve2(input: input2) == 0)
+        #expect(puzzle.solve2(input: input2) == 4)
     }
     
     @Test
