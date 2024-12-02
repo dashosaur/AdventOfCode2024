@@ -60,6 +60,12 @@ extension Array {
 
         return self[index]
     }
+    
+    func removing(at index: Index) -> Self {
+        var copy = self
+        copy.remove(at: index)
+        return copy
+    }
 }
 
 extension Array where Element == [Int] {
