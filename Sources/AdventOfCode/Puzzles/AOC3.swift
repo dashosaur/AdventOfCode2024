@@ -10,10 +10,15 @@ struct AOC3: Puzzle {
     typealias Answer = Int
     
     func solve1(input: String) -> Int {
-        0
+        input
+            .matches(of: /mul\((?<a>\d+),(?<b>\d+)\)/)
+            .reduceSum { Int($0.a)! * Int($0.b)! }
     }
     
     func solve2(input: String) -> Int {
-        0
+        input
+            .replacing(/don't\(\)((?s)(?!do\(\)).)*do\(\)/, with: "")
+            .matches(of: /mul\((?<a>\d+),(?<b>\d+)\)/)
+            .reduceSum { Int($0.a)! * Int($0.b)! }
     }
 }

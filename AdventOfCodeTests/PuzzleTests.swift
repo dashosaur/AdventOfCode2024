@@ -60,14 +60,16 @@ struct PuzzleTests {
         let puzzle = AOC3()
         
         let input1 = """
+        xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))
         """
         
-        #expect(puzzle.solve1(input: input1) == 0)
+        #expect(puzzle.solve1(input: input1) == 161)
         
         let input2 = """
+        xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
         """
         
-        #expect(puzzle.solve2(input: input2) == 0)
+        #expect(puzzle.solve2(input: input2) == 48)
     }
     
     @Test
