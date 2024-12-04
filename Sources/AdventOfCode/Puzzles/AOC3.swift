@@ -11,14 +11,14 @@ struct AOC3: Puzzle {
     
     func solve1(input: String) -> Int {
         input
-            .matches(of: /mul\((?<a>\d+),(?<b>\d+)\)/)
+            .matches(of: #/mul\((?<a>\d+),(?<b>\d+)\)/#)
             .reduceSum { Int($0.a)! * Int($0.b)! }
     }
     
     func solve2(input: String) -> Int {
         input
-            .replacing(/don't\(\)((?s)(?!do\(\)).)*do\(\)/, with: "")
-            .matches(of: /mul\((?<a>\d+),(?<b>\d+)\)/)
+            .replacing(#/don't\(\)(?s).*?do\(\)/#, with: "")
+            .matches(of: #/mul\((?<a>\d+),(?<b>\d+)\)/#)
             .reduceSum { Int($0.a)! * Int($0.b)! }
     }
 }
