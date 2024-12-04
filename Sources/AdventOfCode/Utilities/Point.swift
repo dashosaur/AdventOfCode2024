@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import Algorithms
 
 infix operator %%: MultiplicationPrecedence
 func %%<T: BinaryInteger>(lhs: T, rhs: T) -> T {
@@ -30,6 +31,7 @@ struct Point: Hashable {
     
     static let unitVectors = [Point(0, 1), Point(1, 0), Point(0, -1), Point(-1, 0)]
     static let unitDiagnonalVectors = [Point(1, 1), Point(1, -1), Point(-1, 1), Point(-1, -1)]
+    static let allUnitVectors: [Point] = unitVectors + unitDiagnonalVectors
     
     var neighbors: [Point] {
         Self.unitVectors.map { self + $0 }
@@ -77,6 +79,12 @@ extension Collection where Index == Int, Element : Collection, Element.Index == 
         guard (0..<count).contains(point.y) else { return nil }
         guard (0..<self[point.y].count).contains(point.x) else { return nil }
         return self[point.y][point.x]
+    }
+    
+    var points: [Point] {
+        guard !isEmpty else { return [] }
+        return product((0..<self[0].count), (0..<count))
+            .map { Point($0.0, $0.1) }
     }
 }
 
