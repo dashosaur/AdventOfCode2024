@@ -42,4 +42,12 @@ extension String {
         }
         return (comp[0], comp[1])
     }
+    
+    func splitInTwoInts(_ separator: String) -> (Int, Int) {
+        let comp = components(separatedBy: separator)
+        if comp.count != 2 {
+            fatalError("Attempting to split \(self) into a 2-tuple with separator \(separator)")
+        }
+        return (Int(comp[0])!, Int(comp[1])!)
+    }
 }

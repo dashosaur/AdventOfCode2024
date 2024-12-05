@@ -66,6 +66,10 @@ extension Array {
         copy.remove(at: index)
         return copy
     }
+    
+    var middle: Element {
+        self[count / 2]
+    }
 }
 
 extension Array where Element == [Int] {
