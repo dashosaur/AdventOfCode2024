@@ -9,22 +9,17 @@ import Foundation
 struct AOC5: Puzzle {
     typealias Answer = Int
     
-    private func parseInput(_ input: String) -> (rules: [(Int, Int)], updates: [[Int]]) {
+    private func parseInput(_ input: String) -> (rules: [(a: Int, b: Int)], updates: [[Int]]) {
         let rules = input.lineGroups[0].lines.map { $0.splitInTwoInts("|") }
         let updates = input.lineGroups[1].lines.map(\.integers)
         return (rules, updates)
     }
     
-    private func isValidOrdering(_ pages: [Int], rules: [(Int, Int)]) -> Bool {
+    private func isValidOrdering(_ pages: [Int], rules: [(a: Int, b: Int)]) -> Bool {
         let pageSet = Set(pages)
-        
-        let filteredRules = rules.filter { (a, b) in
-            pageSet.contains(a) && pageSet.contains(b)
-        }
-        
-        return filteredRules.allSatisfy { (a, b) in
-            pages.firstIndex(of: a)! < pages.firstIndex(of: b)!
-        }
+        return rules
+            .filter { pageSet.contains($0.a) && pageSet.contains($0.b) }
+            .allSatisfy { pages.firstIndex(of: $0.a)! < pages.firstIndex(of: $0.b)! }
     }
     
     func solve1(input: String) -> Int {
@@ -38,23 +33,14 @@ struct AOC5: Puzzle {
     func solve2(input: String) -> Int {
         let (rules, updates) = parseInput(input)
         
-        func correctUpdate(_ pages: [Int]) -> [Int] {
-            var correctedUpdate = [Int]()
+        return updates.reduceSum { update in
+            guard !isValidOrdering(update, rules: rules) else { return 0 }
             
-            for page in pages {
-                let insertIndex = correctedUpdate.indices.first { index in
-                    var test = correctedUpdate
-                    test.insert(page, at: index)
-                    return isValidOrdering(test, rules: rules)
-                }
-                correctedUpdate.insert(page, at: insertIndex ?? correctedUpdate.endIndex)
+            let correctedUpdate = update.sorted { a, b in
+                !rules.contains(where: { $0.0 == b && $0.1 == a })
             }
             
-            return correctedUpdate
-        }
-        
-        return updates.reduceSum { update in
-            isValidOrdering(update, rules: rules) ? 0 : correctUpdate(update).middle
+            return correctedUpdate.middle
         }
     }
 }
