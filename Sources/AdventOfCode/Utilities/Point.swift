@@ -65,6 +65,14 @@ struct Point: Hashable {
         (0..<(turns %% 4)).reduce(self) { p, _ in Point(p.y, -p.x) }
     }
     
+    func turnRight() -> Point {
+        rotate(turns: 3)
+    }
+    
+    func turnLeft() -> Point {
+        rotate(turns: 1)
+    }
+    
     var manhattanDistance: Int {
         abs(x) + abs(y)
     }
