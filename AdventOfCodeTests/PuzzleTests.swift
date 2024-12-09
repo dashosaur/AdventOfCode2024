@@ -215,15 +215,13 @@ struct PuzzleTests {
     func testAOC9() {
         let puzzle = AOC9()
         
-        let input1 = """
-        """
+        let input1 = "2333133121414131402"
         
-        #expect(puzzle.solve1(input: input1) == 0)
+        #expect(puzzle.solve1(input: input1) == 1928)
         
-        let input2 = """
-        """
+        let input2 = input1
         
-        #expect(puzzle.solve2(input: input2) == 0)
+        #expect(puzzle.solve2(input: input2) == 2858)
     }
     
     @Test
